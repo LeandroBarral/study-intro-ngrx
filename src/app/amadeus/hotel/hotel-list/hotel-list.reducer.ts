@@ -1,4 +1,6 @@
 import * as actions from '../../amadeus.actions';
+import { AmadeusState } from '../../amadeus.reducers';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 export interface State {
   loaded: boolean;
@@ -28,7 +30,7 @@ export function reducer(
       return {
         loaded: true,
         loading: false,
-        hotels: action.payload || []
+        hotels: action.payload.results || []
       };
     }
 
@@ -47,8 +49,15 @@ export function reducer(
   }
 }
 
-export const getLoaded = (state: State) => state.loaded;
+export const getAmadeusState = createFeatureSelector<AmadeusState>('amadeus');
 
-export const getLoading = (state: State) => state.loading;
+export const getState = createSelector(
+  getAmadeusState,
+  state => state.hotelList
+);
 
-export const getHotels = (state: State) => state.hotels;
+export const getLoaded = createSelector(getState, state => state.loaded);
+
+export const getLoading = createSelector(getState, state => state.loading);
+
+export const getHotels = createSelector(getState, state => state.hotels);

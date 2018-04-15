@@ -32,9 +32,7 @@ export class AmadeusEffects {
           payload.lang
         )
         .takeUntil(nextSearch$)
-        .map(
-          (hotels: Array<any>) => new actions.SearchHotelAirportSuccess(hotels)
-        )
+        .map((res: any) => new actions.SearchHotelAirportSuccess(res))
         .catch(err => Observable.of(new actions.SearchHotelAirportError(err)));
     });
 

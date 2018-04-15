@@ -27,8 +27,8 @@ export class AmadeusService {
       moment()
         .add(1, 'day')
         .toDate();
-    params = params.set('checkIn', checkIn.toISOString());
-    params = params.set('checkOut', checkOut.toISOString());
+    params = params.set('check_in', moment(checkIn).format('YYYY-MM-DD'));
+    params = params.set('check_out', moment(checkOut).format('YYYY-MM-DD'));
     params = params.set('lang', lang);
 
     console.group(':: AmadeusService ::');

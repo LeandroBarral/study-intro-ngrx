@@ -1,3 +1,27 @@
-<p>
-  hotel-list works!
-</p>
+<div *ngIf="loading$ | async" class="has-text-centered">
+  <h1 class="title is-5">Carregando as melhores opções</h1>
+  <button class="button is-loading is-success is-fullwidth"></button>
+</div>
+<div *ngIf="!(loading$ | async)">
+  <h1 class="title">Hóteis</h1>
+  <h2 class="subtitle">
+    No Rio de Janeiro
+  </h2>
+
+
+  <div class="pricing-table">
+    <div class="pricing-plan" *ngFor="let hotel of hotels$ | async">
+      <div class="plan-header">{{hotel.property_name}}</div>
+      <div class="plan-price">
+        <span class="plan-price-amount">
+          <span class="plan-price-currency">{{hotel.total_price.currency}}</span>{{hotel.total_price.amount}}</span>
+      </div>
+      <div class="plan-items">
+        <div class="plan-item" *ngFor="let amenity of hotel.amenities">{{amenity.description}}</div>
+      </div>
+      <div class="plan-footer">
+        <button class="button is-link is-fullwidth">Comprar!</button>
+      </div>
+    </div>
+  </div>
+</div>

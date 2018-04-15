@@ -22,7 +22,7 @@ export class SearchHotelAirport implements Action {
 export class SearchHotelAirportSuccess implements Action {
   readonly type = Types.SEARCH_HOTEL_AIRPORT_SUCCESS;
 
-  constructor(public payload: Array<any>) {}
+  constructor(public payload: any) {}
 }
 
 export class SearchHotelAirportError implements Action {
