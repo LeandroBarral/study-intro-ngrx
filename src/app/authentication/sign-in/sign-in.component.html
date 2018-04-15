@@ -27,7 +27,7 @@
               <div class="field">
                 <label class="label">Usuário</label>
                 <div class="control has-icons-left has-icons-right">
-                  <input class="input is-success" type="text" placeholder="usuário" formControlName="username" [ngClass]="{'is-success': form.controls['username'].valid && form.controls['username'].touched, 'is-danger': form.controls['username'].invalid && (form.controls['username'].dirty || form.controls['username'].touched)}">
+                  <input autofocus class="input is-success" type="text" placeholder="usuário" formControlName="username" [ngClass]="{'is-success': form.controls['username'].valid && form.controls['username'].touched, 'is-danger': form.controls['username'].invalid && (form.controls['username'].dirty || form.controls['username'].touched)}">
                   <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
                   </span>
@@ -48,11 +48,11 @@
                     <i class="fas" [ngClass]="{'fa-check': form.controls['password'].valid && form.controls['password'].touched, 'fa-exclamation-triangle': form.controls['password'].invalid && (form.controls['password'].dirty || form.controls['password'].touched)}"></i>
                   </span>
                 </div>
-                <p class="help is-danger" *ngIf="false">Email/Senha invalidos</p>
+                <p class="help is-danger" *ngIf="errorMessage$ | async">{{errorMessage$ | async}}</p>
               </div>
               <div class="field is-clearfix">
                 <div class="control">
-                  <button class="button is-link is-pulled-right" type="submit" [disabled]="form.invalid">Login</button>
+                  <button class="button is-link is-pulled-right" type="submit" [disabled]="form.invalid" [ngClass]="{'is-loading': loading$ | async}">Login</button>
                 </div>
               </div>
             </div>

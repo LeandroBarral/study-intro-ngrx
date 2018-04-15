@@ -13,7 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
-import { AuthenticationModule } from './authentication/authentication.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterEffects } from './_core/router.effects';
 import { CoreModule } from './_core/core.module';

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SignInComponent } from './authentication/sign-in/sign-in.component';
 import { HotelListComponent } from './amadeus/hotel/hotel-list/hotel-list.component';
 import { SecureComponent } from './layout/secure/secure.component';
+import { AuthenticatedGuard } from './_core/authenticated.guard';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'amadeus',
+    canActivate: [AuthenticatedGuard],
     loadChildren: './amadeus/amadeus.module#AmadeusModule'
   }
 ];

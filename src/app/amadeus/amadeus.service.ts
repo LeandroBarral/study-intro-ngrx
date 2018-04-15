@@ -15,7 +15,7 @@ export class AmadeusService {
     checkOut: Date = null,
     lang: string = 'PT'
   ): Observable<Array<any>> {
-    const env = environment.AMADEUS;
+    const env = environment.API.AMADEUS;
     const apiPath = `${env.BASE_URL}/${env.SERVICES.HOTEL.AIRPORT_SEARCH}`;
 
     let params = new HttpParams();

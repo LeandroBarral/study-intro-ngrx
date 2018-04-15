@@ -5,8 +5,16 @@ import * as actions from './amadeus.actions';
 import {
   createSelector,
   createFeatureSelector,
-  ActionReducerMap
+  ActionReducerMap,
+  ActionReducer
 } from '@ngrx/store';
+import { localStorageSync } from 'ngrx-store-localstorage';
+
+export function localStorageSyncReducer(
+  reducer: ActionReducer<any>
+): ActionReducer<any> {
+  return localStorageSync({ keys: ['amadeus'], rehydrate: true })(reducer);
+}
 
 export interface State extends fromRoot.State {
   amadeus: AmadeusState;

@@ -15,10 +15,16 @@ export class HotelListComponent implements OnInit {
   loading$: Observable<any>;
 
   constructor(private store: Store<fromHotelList.State>) {
-    this.hotels$ = this.store.select(fromHotelList.getHotels);
-    this.loading$ = this.store.select(fromHotelList.getLoading);
+    this.hotels$ = this.store.pipe(select(fromHotelList.getHotels));
+    this.loading$ = this.store.pipe(select(fromHotelList.getLoading));
 
-    this.store.dispatch(new actions.SearchHotelAirport({}));
+    this.hotels$.subscribe(hotels => {
+      if (!hotels) {
+        this.store.dispatch(new actions.SearchHotelAirport({}));
+      } else {
+        console.log('[CACHE] Fetch Hotels From Cache');
+      }
+    });
   }
 
   ngOnInit() {}
