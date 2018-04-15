@@ -20,7 +20,8 @@ export const environment = {
       BASE_URL: 'https://api.sandbox.amadeus.com/v1.2',
       SERVICES: {
         HOTEL: {
-          AIRPORT_SEARCH: 'hotels/search-airport'
+          AIRPORT_SEARCH: 'hotels/search-airport',
+          AIRPORT_DETAIL: 'hotels/:property_code'
         }
       }
     }

@@ -1,5 +1,6 @@
 import * as fromRoot from '../app.reducer';
 import * as fromHotelList from './hotel/hotel-list/hotel-list.reducer';
+import * as fromHotelDetail from './hotel/hotel-detail/hotel-detail.reducer';
 import * as actions from './amadeus.actions';
 
 import {
@@ -22,10 +23,12 @@ export interface State extends fromRoot.State {
 
 export interface AmadeusState {
   hotelList: fromHotelList.State;
+  hotelDetail: fromHotelDetail.State;
 }
 
 export const reducers: ActionReducerMap<AmadeusState> = {
-  hotelList: fromHotelList.reducer
+  hotelList: fromHotelList.reducer,
+  hotelDetail: fromHotelDetail.reducer
 };
 
 export const getAmadeusState = createFeatureSelector<AmadeusState>('amadeus');

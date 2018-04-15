@@ -4,6 +4,7 @@ import * as fromHotelList from './hotel-list.reducer';
 import * as actions from '../../amadeus.actions';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hotel-list',
@@ -14,13 +15,16 @@ export class HotelListComponent implements OnInit {
   hotels$: Observable<any>;
   loading$: Observable<any>;
 
-  constructor(private store: Store<fromHotelList.State>) {
+  constructor(
+    private store: Store<fromHotelList.State>,
+    private router: Router
+  ) {
     this.hotels$ = this.store.pipe(select(fromHotelList.getHotels));
     this.loading$ = this.store.pipe(select(fromHotelList.getLoading));
 
     this.hotels$.subscribe(hotels => {
       if (!hotels) {
-        this.store.dispatch(new actions.SearchHotelAirport({}));
+        this.clearCache();
       } else {
         console.log('[CACHE] Fetch Hotels From Cache');
       }
@@ -28,4 +32,13 @@ export class HotelListComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  clearCache() {
+    this.store.dispatch(new actions.SearchHotelAirport({}));
+  }
+
+  detail(propertyCode: string) {
+    // console.log('propertyCode', propertyCode);
+    this.router.navigate(['/amadeus/hotels', propertyCode]);
+  }
 }

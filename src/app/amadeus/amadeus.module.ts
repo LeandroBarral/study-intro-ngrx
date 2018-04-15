@@ -9,6 +9,7 @@ import { reducers } from './amadeus.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { AmadeusEffects } from './amadeus.effects';
 import { HotelListComponent } from './hotel/hotel-list/hotel-list.component';
+import { HotelDetailComponent } from './hotel/hotel-detail/hotel-detail.component';
 
 @NgModule({
   imports: [
@@ -18,9 +19,9 @@ import { HotelListComponent } from './hotel/hotel-list/hotel-list.component';
     StoreModule.forFeature('amadeus', reducers),
     EffectsModule.forFeature([AmadeusEffects])
   ],
-  declarations: [HotelListComponent],
+  declarations: [HotelListComponent, HotelDetailComponent],
   providers: [AmadeusService],
-  exports: [HotelListComponent]
+  exports: [HotelListComponent, HotelDetailComponent]
 })
 export class AmadeusModule {
   public static forRoot(): ModuleWithProviders {

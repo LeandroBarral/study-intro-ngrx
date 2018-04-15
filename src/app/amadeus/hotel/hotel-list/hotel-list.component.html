@@ -3,7 +3,7 @@
   <button class="button is-loading is-success is-fullwidth"></button>
 </div>
 <div *ngIf="!(loading$ | async)">
-  <h1 class="title">Hóteis</h1>
+  <h1 class="title">Hóteis <a class="is-size-7" (click)="clearCache()">(limpar cache)</a></h1>
   <h2 class="subtitle">
     No Rio de Janeiro
   </h2>
@@ -20,7 +20,7 @@
         <div class="plan-item" *ngFor="let amenity of hotel.amenities">{{amenity.description}}</div>
       </div>
       <div class="plan-footer">
-        <button class="button is-link is-fullwidth">Comprar!</button>
+        <button class="button is-link is-fullwidth" (click)="detail(hotel.property_code)">Detalhes do Hotel</button>
       </div>
     </div>
   </div>

@@ -1,0 +1,61 @@
+<div *ngIf="loading$ | async" class="has-text-centered">
+  <h1 class="title is-5">Carregando detalhes do Hotel</h1>
+  <button class="button is-loading is-success is-fullwidth"></button>
+</div>
+<div *ngIf="!(loading$ | async)">
+  <h1 class="title">Detalhe do Hotel</h1>
+  <ng-container *ngIf="hotel$ | async; let hotel">
+    <h2 class="subtitle">{{hotel.property_name}}</h2>
+
+    <div class="field is-horizontal" *ngIf="hotel.address">
+      <div class="field-label is-normal">
+        <label class="label">Endereço</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <span>{{hotel.address.line1}}</span>
+        </div>
+        <div class="field">
+          <span>{{hotel.address.city}}-{{hotel.address.region}} / {{hotel.address.country}}</span>
+        </div>
+        <div class="field">
+          <span>CEP: </span>
+          <span>{{hotel.address.postal_code}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal" *ngIf="hotel.contacts">
+      <div class="field-label is-normal">
+        <label class="label">Contatos</label>
+      </div>
+      <div class="field-body">
+        <div class="field" *ngFor="let contact of hotel.contacts">
+          <span *ngIf="contact.type !== 'EMAIL' && contact.type !== 'URL'">{{contact.type}}: </span>
+          <span *ngIf="contact.type === 'EMAIL'; else normalDetail">
+            <a href="mailto:{{contact.detail}}">{{contact.detail}}</a>
+          </span>
+          <span *ngIf="contact.type === 'URL'; else normalDetail">
+            <a href="http://{{contact.detail}}" target="_blank">{{contact.detail}}</a>
+          </span>
+          <span *ngIf="contact.type !== 'EMAIL' && contact.type !== 'URL'" #normalDetail>{{contact.detail}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label">
+        <!-- Left empty for spacing -->
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <button class="button is-link" (click)="back()">
+              Voltar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

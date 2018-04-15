@@ -29,11 +29,34 @@ export class AmadeusEffects {
           payload.iataAirportCode,
           payload.checkIn,
           payload.checkOut,
+          payload.currency,
           payload.lang
         )
         .takeUntil(nextSearch$)
         .map((res: any) => new actions.SearchHotelAirportSuccess(res))
         .catch(err => Observable.of(new actions.SearchHotelAirportError(err)));
+    });
+
+  @Effect()
+  getDetail$: Observable<Action> = this.actions$
+    .ofType(actions.Types.GET_HOTEL)
+    .map((action: actions.GetHotel) => action.payload)
+    .switchMap(payload => {
+      const nextRequest$ = this.actions$
+        .ofType(actions.Types.GET_HOTEL)
+        .skip(1);
+
+      return this.amadeusService
+        .getHotelDetail(
+          payload.propertyCode,
+          payload.checkIn,
+          payload.checkOut,
+          payload.currency,
+          payload.lang
+        )
+        .takeUntil(nextRequest$)
+        .map((res: any) => new actions.GetHotelSuccess(res))
+        .catch(err => Observable.of(new actions.GetHotelError(err)));
     });
 
   constructor(
