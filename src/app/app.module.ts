@@ -18,10 +18,16 @@ import { RouterEffects } from './_core/router.effects';
 import { CoreModule } from './_core/core.module';
 import { AmadeusModule } from './amadeus/amadeus.module';
 
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', {
+      enabled: environment.production
+    }),
     AppRoutingModule,
     ReactiveFormsModule,
 

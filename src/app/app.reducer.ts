@@ -24,4 +24,8 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
       fromLayout.localStorageSyncReducer,
       fromAmadeus.localStorageSyncReducer
     ]
-  : [];
+  : [
+      fromAuth.localStorageSyncReducer,
+      fromLayout.localStorageSyncReducer,
+      fromAmadeus.localStorageSyncReducer
+    ];
