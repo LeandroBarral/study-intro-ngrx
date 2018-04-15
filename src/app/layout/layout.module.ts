@@ -5,11 +5,12 @@ import { BulmaModule } from '../bulma/bulma.module';
 import { NavbarComponent } from './partials/navbar/navbar.component';
 import { SecureComponent } from './secure/secure.component';
 import { RouterModule } from '@angular/router';
+import { LayoutRoutingModule } from './layout-routing.module';
 
 @NgModule({
   imports: [RouterModule, ReactiveFormsModule, CommonModule, BulmaModule],
   exports: [
-    RouterModule,
+    LayoutRoutingModule,
     ReactiveFormsModule,
     BulmaModule,
     NavbarComponent,

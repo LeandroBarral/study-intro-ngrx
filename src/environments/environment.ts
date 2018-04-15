@@ -4,5 +4,14 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  AMADEUS: {
+    API_KEY: 'NA0ByTSqwCuiTJZdJgmLy3ZRSmnU7bUc',
+    BASE_URL: 'https://api.sandbox.amadeus.com/v1.2',
+    SERVICES: {
+      HOTEL: {
+        AIRPORT_SEARCH: 'hotels/search-airport'
+      }
+    }
+  }
 };
