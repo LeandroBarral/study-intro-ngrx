@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+$fa-font-path: '~@fortawesome/fontawesome-free-webfonts/webfonts';
+@import '~@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss';
+@import '~@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss';
+@import '~@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss';
+
+@import "~bulma/sass/utilities/initial-variables";
+@import "~bulma/sass/utilities/functions";
+
+// Own variables
+
+@import "~bulma/sass/utilities/derived-variables";
+@import "~bulma/bulma";
