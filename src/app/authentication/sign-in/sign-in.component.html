@@ -16,22 +16,23 @@
       <p class="title has-text-centered">
         Login
       </p>
-      <p class="subtitle has-text-centered">
-        Faça login pra continuar (usuário: test | senha: test)
+      <p class="subtitle is-6 has-text-centered">
+        Faça login pra continuar
+        <span class="subtitle is-7">(usuário: test | senha: test)</span>
       </p>
-      <form>
+      <form [formGroup]="form" (ngSubmit)="form.valid && submit()" novalidate>
         <div class="columns">
           <div class="column is-three-fifths is-offset-one-fifth">
             <div class="box">
               <div class="field">
                 <label class="label">Usuário</label>
                 <div class="control has-icons-left has-icons-right">
-                  <input class="input is-success" type="text" placeholder="usuário">
+                  <input class="input is-success" type="text" placeholder="usuário" formControlName="username" [ngClass]="{'is-success': form.controls['username'].valid && form.controls['username'].touched, 'is-danger': form.controls['username'].invalid && (form.controls['username'].dirty || form.controls['username'].touched)}">
                   <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
                   </span>
                   <span class="icon is-small is-right">
-                    <i class="fas fa-check"></i>
+                    <i class="fas" [ngClass]="{'fa-check': form.controls['username'].valid && form.controls['username'].touched, 'fa-exclamation-triangle': form.controls['username'].invalid && (form.controls['username'].dirty || form.controls['username'].touched)}"></i>
                   </span>
                 </div>
               </div>
@@ -39,19 +40,19 @@
               <div class="field">
                 <label class="label">Senha</label>
                 <div class="control has-icons-left has-icons-right">
-                  <input class="input is-danger" type="password" placeholder="**********">
+                  <input class="input" type="password" placeholder="*************" formControlName="password" [ngClass]="{'is-success': form.controls['password'].valid && form.controls['password'].touched, 'is-danger': form.controls['password'].invalid && (form.controls['password'].dirty || form.controls['password'].touched)}">
                   <span class="icon is-small is-left">
                     <i class="fas fa-envelope"></i>
                   </span>
                   <span class="icon is-small is-right">
-                    <i class="fas fa-exclamation-triangle"></i>
+                    <i class="fas" [ngClass]="{'fa-check': form.controls['password'].valid && form.controls['password'].touched, 'fa-exclamation-triangle': form.controls['password'].invalid && (form.controls['password'].dirty || form.controls['password'].touched)}"></i>
                   </span>
                 </div>
-                <p class="help is-danger">Email/Senha invalidos</p>
+                <p class="help is-danger" *ngIf="false">Email/Senha invalidos</p>
               </div>
               <div class="field is-clearfix">
                 <div class="control">
-                  <button class="button is-link is-pulled-right">Login</button>
+                  <button class="button is-link is-pulled-right" type="submit" [disabled]="form.invalid">Login</button>
                 </div>
               </div>
             </div>
