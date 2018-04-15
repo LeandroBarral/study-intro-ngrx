@@ -8,6 +8,7 @@ import {
 import { storeLogger } from 'ngrx-store-logger';
 
 import { environment } from '../environments/environment';
+import * as fromLayout from './layout/layout.reducers';
 import * as fromAmadeus from './amadeus/amadeus.reducers';
 import * as fromAuth from './authentication/authentication.reducers';
 
@@ -20,6 +21,7 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
   ? [
       storeLogger(),
       fromAuth.localStorageSyncReducer,
+      fromLayout.localStorageSyncReducer,
       fromAmadeus.localStorageSyncReducer
     ]
   : [];

@@ -1,5 +1,11 @@
 <app-layout-navbar></app-layout-navbar>
-
-<section class="section">
-  <router-outlet></router-outlet>
-</section>
+<div class="columns">
+  <div class="column is-one-quarter" [ngClass]="{'is-hidden-touch': !(isSidemenuOpen$ | async)}">
+    <app-layout-sidemenu></app-layout-sidemenu>
+  </div>
+  <div class="column">
+    <section class="section">
+      <router-outlet></router-outlet>
+    </section>
+  </div>
+</div>
