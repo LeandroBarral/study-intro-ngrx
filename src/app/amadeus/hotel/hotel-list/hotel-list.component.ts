@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./hotel-list.component.scss']
 })
 export class HotelListComponent implements OnInit {
-  hotels$: Observable<any>;
+  hotels$: Observable<Array<any>>;
   loading$: Observable<any>;
 
   constructor(
@@ -23,7 +23,7 @@ export class HotelListComponent implements OnInit {
     this.loading$ = this.store.pipe(select(fromHotelList.getLoading));
 
     this.hotels$.subscribe(hotels => {
-      if (!hotels) {
+      if (!hotels || hotels.length === 0) {
         this.clearCache();
       } else {
         this.hotels$ = Observable.of(hotels);
