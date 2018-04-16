@@ -26,6 +26,7 @@ export class HotelListComponent implements OnInit {
       if (!hotels) {
         this.clearCache();
       } else {
+        this.hotels$ = Observable.of(hotels);
         console.log('[CACHE] Fetch Hotels From Cache');
       }
     });
